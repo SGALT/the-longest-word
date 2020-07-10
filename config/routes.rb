@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
+  root to: 'games#index'
 
-  resources :games, only: [:index, :show, :new, :create] do
-    resources :parties, only: [:index, :show, :new, :create] do
+  resources :games, only: [:show, :new, :create] do
+    resources :parties, only: [:show, :new, :create] do
       resources :solutions, only: [:index]
     end
   end
