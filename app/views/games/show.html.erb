@@ -1,5 +1,26 @@
 <h1>Game session</h1>
-<p>You can play 5 parties for one game and the final score will be validated</p>
-<%= @game.id %>
 
-<h2>HERE PUT PARTY INDEX WITH LINK FOR PLAYING</h2>
+<!-- Ici on affiche la liste des parties terminées -->
+<h2>Parties terminées</h2>
+
+<% @parties.each_with_index do |party, index| %>
+  <% unless party.party_score.nil? %>
+    <li>
+      Partie <%= party.id %> <%= index + 1 %> #### Score : <%= party.party_score %>
+    </li>
+  <% end %>
+<% end %>
+
+<!-- Ici on affiche la liste des parties à jouer -->
+<h2>Parties à jouer</h2>
+
+<% @parties.each_with_index do |party, index| %>
+  <% if party.party_score.nil? %>
+    <li>
+      Partie n°<%= index + 1 %> #### Score : 0
+    </li>
+    <li>
+      <%= link_to 'jouer la partie', edit_game_party_path(party) %>
+    </li>
+  <% end %>
+<% end %>
