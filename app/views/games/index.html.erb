@@ -3,7 +3,7 @@
 <ul>
   <% @games.each_with_index do |game, index| %>
     <li>
-      <%= link_to "game #{index + 1}", game_path(game.id) %> ### <%= game.parties.count %> / 5
+      <%= link_to "game #{index + 1}", game_path(game.id) %> ### <%= game.parties_count %> / 5
     </li>
   <% end %>
 </ul>

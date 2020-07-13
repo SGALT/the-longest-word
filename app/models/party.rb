@@ -7,6 +7,6 @@ class Party < ApplicationRecord
   private
 
   def check_parties_limit
-    errors.add(:base, "Parties limit reached") if self.game.parties_count > 5
+    errors.add(:base, "Parties limit reached") if self.game.parties_count >= 5
   end
 end
