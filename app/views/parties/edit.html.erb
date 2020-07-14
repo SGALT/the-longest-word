@@ -1,2 +1,14 @@
-<h1>Parties#edit</h1>
-<p>Find me in app/views/parties/show.html.erb</p>
+<h1>Find a word</h1>
+<p>make your choice in the 10 letters behind</p>
+<ul>
+  <% @party.ten_letters_list.split('').each do |letter| %>
+    <li>
+      <%= letter %>
+    </li>
+  <% end %>
+</ul>
+<%= simple_form_for [:game, @party] do |f| %>
+  <%= f.input :word %>
+  <%= f.button :submit, class: 'btn btn-danger' %>
+<% end %>
+

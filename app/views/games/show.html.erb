@@ -20,7 +20,7 @@
       Partie n°<%= index + 1 %> #### Score : 0
     </li>
     <li>
-      <%= link_to 'jouer la partie', edit_game_party_path(party) %>
+      <%= link_to 'jouer la partie', edit_game_party_path(@game.id, party.id) %>
     </li>
   <% end %>
 <% end %>
