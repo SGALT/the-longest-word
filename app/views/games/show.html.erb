@@ -1,6 +1,8 @@
 <h1>Game session</h1>
 
 <!-- Ici on affiche la liste des parties terminées -->
+<h2>Score global</h2>
+    <%= @total_score %>
 <h2>Parties terminées</h2>
 
 <% @parties.each_with_index do |party, index| %>
