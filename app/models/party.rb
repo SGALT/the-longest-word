@@ -1,6 +1,6 @@
 class Party < ApplicationRecord
   belongs_to :game, counter_cache: true
-  has_many :solutions
+  has_many :solutions, dependent: :destroy
   validates :word, presence: true
   validate :check_parties_limit, on: :create
 

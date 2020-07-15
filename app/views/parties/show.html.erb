@@ -1,4 +1,39 @@
 <h1>
-show.html.erb
+  Votre réponse
 </h1>
-<%= @party.word %>
+<p>
+  <%= @party.word %> pour <%= @party.party_score %> points
+</p>
+<p>
+  <%= @party.ten_letters_list %>
+</p>
+
+<ul>
+  <% @party.solutions.each do |solution| %>
+    <li>
+      <%= solution.word %> : <%= solution.word.length %> points
+    </li>
+  <% end %>
+</ul>
+<%= link_to 'Retour au jeu', game_path(@party.game) %>
+
+<p>
+  Nombre de manches jouées
+</p>
+<p>
+  <%= @party.game.parties.count %> / 5
+</p>
+
+<p>
+  Meilleur score sur une partie
+</p>
+<p>
+  <%= @best_score %> points
+</p>
+
+<p>
+  Score actuel sur cette partie
+</p>
+<p>
+  <%= @party.game.game_score %> points
+</p>
