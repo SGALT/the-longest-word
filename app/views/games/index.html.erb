@@ -1,13 +1,20 @@
-<h1>The Longest Word</h1>
-<h2>Vos parties</h2>
-<ul>
-  <% @games.each_with_index do |game, index| %>
-    <li>
-      <%= link_to "game #{index + 1}", game_path(game.id) %> ### <%= game.parties_count %> / 5
-    </li>
-  <% end %>
-</ul>
-<h2>Créez une nouvelle partie</h2>
-<%= simple_form_for [@game] do |f| %>
-  <%= f.button :submit, class: 'btn btn-danger' %>
-<% end %>
+<div class="d-flex flex-column align-items-center justify-content-around my-container">
+  <h1>The Longest Word</h1>
+  <div>
+    <h2>Vos parties</h2>
+    <ul class="list-group list-group-flush w-100">
+      <% @games.each_with_index do |game, index| %>
+        <li class="list-group-item d-flex justify-content-between align-items-center btn-light">
+          <%= link_to "game #{index + 1}", game_path(game.id), class: "text-dark" %>
+          <span class="badge badge-secondary badge-pill"><%= game.parties_count %> / 5</span>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div>
+    <h2 class="text-center">Créez une nouvelle partie</h2>
+    <%= simple_form_for [@game] do |f| %>
+      <%= f.button :submit, class: 'btn btn-danger d-block mx-auto', value: 'Générer une nouvelle partie' %>
+    <% end %>
+  </div>
+</div>
