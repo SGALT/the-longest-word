@@ -1,20 +1,30 @@
-<div class="d-flex flex-column align-items-center justify-content-around my-container">
-  <h1>The Longest Word</h1>
+<!-- Ici on affiche les datas de suivi du jeu, high score, nb games... -->
+<div class="best-score-element d-flex justify-content-end mr-3">
+  <%= image_tag 'trophy.png' %>
+  <span class="best-score-tag">
+    <%= @best_score %>
+  </span>
+</div>
+<!-- top container -->
+<div class="d-flex flex-column align-items-center justify-content-center my-container">
+  <h1 class="text-center text-white text-uppercase">The Longest Word</h1>
   <div>
-    <h2>Vos parties</h2>
-    <ul class="list-group list-group-flush w-100">
+    <%= simple_form_for [@game] do |f| %>
+      <%= f.button :submit, class: 'btn btn-dark d-block mx-auto', value: 'Créer une nouvelle partie' %>
+    <% end %>
+  </div>
+</div>
+<!-- bottom container -->
+<div class="d-flex flex-column align-items-center justify-content-around mt-4">
+  <h2>Vos parties</h2>
+  <div class="game-list w-100">
+    <ul class="list-group list-group-flush w-75 mx-auto">
       <% @games.each_with_index do |game, index| %>
         <li class="list-group-item d-flex justify-content-between align-items-center btn-light">
-          <%= link_to "game #{index + 1}", game_path(game.id), class: "text-dark" %>
+          <%= link_to "Partie #{index + 1}", game_path(game.id), class: "text-dark" %>
           <span class="badge badge-secondary badge-pill"><%= game.parties_count %> / 5</span>
         </li>
       <% end %>
     </ul>
-  </div>
-  <div>
-    <h2 class="text-center">Créez une nouvelle partie</h2>
-    <%= simple_form_for [@game] do |f| %>
-      <%= f.button :submit, class: 'btn btn-danger d-block mx-auto', value: 'Générer une nouvelle partie' %>
-    <% end %>
   </div>
 </div>

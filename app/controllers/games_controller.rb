@@ -1,4 +1,6 @@
 class GamesController < ApplicationController
+  before_action :best_game_score, only: [:index, :show]
+
   def index
     @games = current_user.games
     @game = Game.new
