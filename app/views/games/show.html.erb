@@ -1,28 +1,39 @@
-<h1>Votre partie</h1>
 
-<!-- Ici on affiche la liste des parties terminées -->
-<h2>Score global</h2>
-    <%= @total_score %>
-<h2>Manches terminées</h2>
+<div class="d-flex flex-column align-items-center justify-content-around my-container">
+  <h1>Votre partie</h1>
 
-<% @parties.each_with_index do |party, index| %>
-  <% unless party.party_score.nil? %>
-    <li>
-      Partie <%= party.id %> <%= index + 1 %> #### Score : <%= party.party_score %>
-    </li>
-    <li>
-      <%= link_to 'voir mon résultat', game_party_path(@game, party) %>
-    </li>
+  <!-- Ici on affiche la liste des parties terminées -->
+  <div>
+    <h2>
+      Score global
+    </h2>
+    <p class="text-center">
+      <%= @total_score %>
+    </p>
+  </div>
+
+  <h2>
+    Manches terminées
+  </h2>
+  <ul class="container inline-list text-center">
+    <% @parties.each_with_index do |party, index| %>
+      <% unless party.party_score.nil? %>
+        <li class="list-inline-item">
+          Partie <%= index + 1 %> / Score : <%= party.party_score %> pts
+        </li>
+        <li class="list-inline-item">
+          <%= link_to 'voir mon résultat', game_party_path(@game, party), class: 'btn btn-danger' %>
+        </li>
+      <% end %>
+    <% end %>
+  </ul>
+
+  <!-- Ici on affiche le bouton si il reste des parties à jouer -->
+  <% if @game.parties_count < 5 %>
+    <%= link_to 'jouer la prochaine manche', new_game_party_path(@game), class: 'btn btn-danger' %>
+  <% else %>
+    Vous avez terminé cette partie
   <% end %>
-<% end %>
 
-<!-- Ici on affiche le bouton si il reste des parties à jouer -->
-<% if @game.parties_count < 5 %>
-  <%= link_to 'jouer la prochaine manche', new_game_party_path(@game) %>
-<% else %>
-  Vous avez terminé cette partie
-<% end %>
-
-<%= link_to 'retour à la liste des parties', root_path %>
-
-
+  <%= link_to 'retour à la liste des parties', root_path, class: 'btn btn-danger' %>
+</div>
