@@ -1,5 +1,5 @@
 <h1>The Longest Word</h1>
-<h2>Your games</h2>
+<h2>Vos parties</h2>
 <ul>
   <% @games.each_with_index do |game, index| %>
     <li>
@@ -7,7 +7,7 @@
     </li>
   <% end %>
 </ul>
-<h2>Create a new game</h2>
+<h2>Créez une nouvelle partie</h2>
 <%= simple_form_for [@game] do |f| %>
   <%= f.button :submit, class: 'btn btn-danger' %>
 <% end %>

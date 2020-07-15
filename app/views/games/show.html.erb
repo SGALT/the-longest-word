@@ -1,9 +1,9 @@
-<h1>Game session</h1>
+<h1>Votre partie</h1>
 
 <!-- Ici on affiche la liste des parties terminées -->
 <h2>Score global</h2>
     <%= @total_score %>
-<h2>Parties terminées</h2>
+<h2>Manches terminées</h2>
 
 <% @parties.each_with_index do |party, index| %>
   <% unless party.party_score.nil? %>
@@ -22,5 +22,7 @@
 <% else %>
   Vous avez terminé cette partie
 <% end %>
+
+<%= link_to 'retour à la liste des parties', root_path %>
 
 
