@@ -1,0 +1,16 @@
+.best-score-element {
+  position: absolute;
+  width: 100%;
+  top: 80px;
+  right: -5px;
+  img {
+    height: 45px;
+  }
+  .best-score-tag {
+    border: solid gold 1px;
+    border-radius: 50%;
+    padding: 10px;
+    background-color: goldenrod;
+    color: white;
+  }
+}

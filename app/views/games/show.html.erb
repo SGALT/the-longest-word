@@ -1,39 +1,50 @@
-
+<!-- Ici on affiche les datas de suivi du jeu, high score, nb games... -->
+<div class="best-score-element d-flex justify-content-end mr-3">
+  <%= image_tag 'trophy.png' %>
+  <span class="best-score-tag">
+    <%= @best_score %>
+  </span>
+</div>
+<!-- top container -->
 <div class="d-flex flex-column align-items-center justify-content-around my-container">
-  <h1>Votre partie</h1>
 
   <!-- Ici on affiche la liste des parties terminées -->
-  <div>
-    <h2>
+  <div class="mx-auto">
+    <h1 class="text-center text-white">
+      Votre partie
+    </h1>
+    <h2 class="text-center text-white">
       Score global
     </h2>
-    <p class="text-center">
+    <p class="text-center text-white">
       <%= @total_score %>
     </p>
+    <% if @game.parties_count < 5 %>
+      <%= link_to 'jouer la prochaine manche', new_game_party_path(@game), class: 'btn btn-dark' %>
+    <% else %>
+      Vous avez terminé cette partie
+    <% end %>
   </div>
-
-  <h2>
+</div>
+<!-- bottom container -->
+<div>
+  <h2 class="text-center mt-4">
     Manches terminées
   </h2>
-  <ul class="container inline-list text-center">
+  <ul class="container inline-list text-center mx-auto">
     <% @parties.each_with_index do |party, index| %>
       <% unless party.party_score.nil? %>
         <li class="list-inline-item">
           Partie <%= index + 1 %> / Score : <%= party.party_score %> pts
         </li>
         <li class="list-inline-item">
-          <%= link_to 'voir mon résultat', game_party_path(@game, party), class: 'btn btn-danger' %>
+          <%= link_to 'voir mon résultat', game_party_path(@game, party), class: 'btn btn-dark' %>
         </li>
       <% end %>
     <% end %>
   </ul>
 
   <!-- Ici on affiche le bouton si il reste des parties à jouer -->
-  <% if @game.parties_count < 5 %>
-    <%= link_to 'jouer la prochaine manche', new_game_party_path(@game), class: 'btn btn-danger' %>
-  <% else %>
-    Vous avez terminé cette partie
-  <% end %>
 
-  <%= link_to 'retour à la liste des parties', root_path, class: 'btn btn-danger' %>
+  <%= link_to 'retour à la liste des parties', root_path, class: 'btn btn-dark d-block mx-auto w-75' %>
 </div>

@@ -1,7 +1,9 @@
 class PartiesController < ApplicationController
+  before_action :best_game_score, only: [:show, :new]
+
   def show
     @party = Party.find(params[:id])
-    @best_score = Game.order(:game_score).reverse.first.game_score
+    @best_score = best_game_score
   end
 
   def new
