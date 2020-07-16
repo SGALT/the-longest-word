@@ -1,0 +1,24 @@
+<div class="best-score-element d-flex justify-content-around align-items-center">
+  <div>
+    <%= image_tag 'party.png' %>
+    <span class="best-score-tag-circle">
+      <% if !@game.game_score.nil? && @game.game_score > 10 %>
+        <%= @game.game_score %>
+      <% else %>
+        0<%= @game.game_score %>
+      <% end %>
+    </span>
+  </div>
+  <div>
+    <%= image_tag 'game.png' %>
+    <span class="best-score-tag-square">
+      <%= @game.parties_count %>/5
+    </span>
+  </div>
+  <div>
+    <%= image_tag 'trophy.png' %>
+    <span class="best-score-tag-circle">
+      <%= @best_score %>
+    </span>
+  </div>
+</div>
