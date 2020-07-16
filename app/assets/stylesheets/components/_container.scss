@@ -4,4 +4,22 @@
   background-color: #F2744A;
   border-bottom-left-radius: 20%;
   border-bottom-right-radius: 20%;
+  .letters-tiles {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15vw;
+    height: 55px;
+    font-size: 35px;
+    border: solid 1px gold;
+    border-radius: 5px;
+    margin: 5px;
+    background-color: goldenrod;
+  }
+}
+.solutions-list {
+  height: 17vh;
+  list-style: none;
+  border: solid 1px black;
+  border-radius: 5px;
 }

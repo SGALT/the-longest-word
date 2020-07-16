@@ -1,50 +1,38 @@
 <!-- Ici on affiche les datas de suivi du jeu, high score, nb games... -->
-<div class="best-score-element d-flex justify-content-end mr-3">
-  <%= image_tag 'trophy.png' %>
-  <span class="best-score-tag">
-    <%= @best_score %>
-  </span>
-</div>
+<%= render 'shared/tagsbar' %>
 <!-- top container -->
 <div class="d-flex flex-column align-items-center justify-content-around my-container">
 
   <!-- Ici on affiche la liste des parties terminées -->
-  <div class="mx-auto">
+  <div class="d-flex flex-column align-items-center">
     <h1 class="text-center text-white">
-      Votre partie
+      The Longest Word Partie
     </h1>
-    <h2 class="text-center text-white">
-      Score global
-    </h2>
-    <p class="text-center text-white">
-      <%= @total_score %>
-    </p>
     <% if @game.parties_count < 5 %>
-      <%= link_to 'jouer la prochaine manche', new_game_party_path(@game), class: 'btn btn-dark' %>
+      <%= link_to 'jouer la prochaine manche', new_game_party_path(@game), class: 'btn btn-danger w-75' %>
     <% else %>
+    <h2 class="text-white text-center">
       Vous avez terminé cette partie
+    </h2>
     <% end %>
   </div>
 </div>
 <!-- bottom container -->
 <div>
-  <h2 class="text-center mt-4">
+  <h2 class="text-center mt-2">
     Manches terminées
   </h2>
-  <ul class="container inline-list text-center mx-auto">
+  <div class="text-center mx-auto game-list">
     <% @parties.each_with_index do |party, index| %>
       <% unless party.party_score.nil? %>
-        <li class="list-inline-item">
-          Partie <%= index + 1 %> / Score : <%= party.party_score %> pts
-        </li>
-        <li class="list-inline-item">
-          <%= link_to 'voir mon résultat', game_party_path(@game, party), class: 'btn btn-dark' %>
-        </li>
+        <div class="mt-1">
+          <%= link_to "Partie #{index + 1} - Score : #{party.party_score} pts", game_party_path(@game, party), class: 'btn btn-danger d-block mx-auto w-75' %>
+        </div>
       <% end %>
     <% end %>
-  </ul>
+  </div>
 
   <!-- Ici on affiche le bouton si il reste des parties à jouer -->
 
-  <%= link_to 'retour à la liste des parties', root_path, class: 'btn btn-dark d-block mx-auto w-75' %>
+  <%= link_to 'retour à la liste des parties', root_path, class: 'btn btn-danger d-block mx-auto w-75 mt-3' %>
 </div>

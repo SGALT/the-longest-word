@@ -1,6 +1,6 @@
 class PartiesController < ApplicationController
   before_action :best_game_score, only: [:show, :new]
-
+  before_action :set_game, only: [:show, :new]
   def show
     @party = Party.find(params[:id])
     @best_score = best_game_score
@@ -27,6 +27,10 @@ class PartiesController < ApplicationController
   end
 
   private
+
+  def set_game
+    @game = Game.find(params[:game_id])
+  end
 
   def party_params
     params.require(:party).permit(:word, :ten_letters_list, :game_id)
